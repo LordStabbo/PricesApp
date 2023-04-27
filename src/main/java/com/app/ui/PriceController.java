@@ -1,7 +1,7 @@
-package com.app.application;
+package com.app.ui;
 
 import com.app.infrastructure.PriceRepository;
-import com.app.infrastructure.model.Price;
+import com.app.model.Price;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +35,6 @@ public class PriceController {
             return ResponseEntity.notFound().build();
         }
 
-        return null;
     }
 
 }
