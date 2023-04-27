@@ -14,6 +14,9 @@ public class PriceService {
    @Autowired
     PriceRepository priceRepo;
 
+   Price myPrice = new Price();
+   myMapper.map();
+
 
 
     public List<Price> findPrices(Date applicationRange, int productId, int brandId) {
