@@ -1,19 +1,14 @@
 package com.app.infrastructure.model;
 
-import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
-@NoArgsConstructor
+@Table(name = "prices")
 public class Price {
-    @Id
-    @GeneratedValue
-    @Getter
-    private int brandId;
+    @Id private int brandId;
     private Date startDate;
     private Date endDate;
     private int priceList;
