@@ -20,8 +20,6 @@ public class PriceService {
 
     public ExitingPriceDTO gimmePrices(ArrivingPriceDTO myArrivingPrice) {
 
-        myArrivingPrice = new ArrivingPriceDTO(LocalDateTime.of(2023, 06, 01, 18, 23, 00), 1, 1);
-
         PriceDTO myPrice = new PriceDTO(1, LocalDateTime.of(2022, 12, 01, 18, 23, 00),
                 LocalDateTime.of(2023, 12, 01, 18, 23, 00), 1, 1, 1, 0.0, "ola");
 
@@ -30,10 +28,10 @@ public class PriceService {
                 myPrice.getPriceList(), myPrice.getProductId(), myPrice.getPrice(), myPrice.getCurrency());
 
         if (myArrivingPrice.getPriceDateTime().isAfter(myPrice.getStartDate())
-                || myArrivingPrice.getPriceDateTime().isBefore(myPrice.getEndDate())) {
+                && myArrivingPrice.getPriceDateTime().isBefore(myPrice.getEndDate())) {
             return myExitPrice;
         } else {
-            return null;
+            return new ExitingPriceDTO(0, null, null, 0, 0, 0.0, null);
         }
     }
 

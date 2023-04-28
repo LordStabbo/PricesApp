@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
-
+@NoArgsConstructor
 public class ArrivingPriceDTO {
     private LocalDateTime priceDateTime;
     private int productId;
