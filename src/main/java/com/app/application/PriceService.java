@@ -1,15 +1,11 @@
 package com.app.application;
 
 import com.app.infrastructure.PriceRepository;
-import com.app.model.Price;
 import com.app.ui.ArrivingPriceDTO;
 import com.app.ui.PriceDTO;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Service
 public class PriceService {
@@ -21,18 +17,19 @@ public class PriceService {
         this.priceRepo = priceRepo;
     }
 
-    public PriceDTO gimmePrices() {
+    public PriceDTO gimmePrices(ArrivingPriceDTO myArrivingPrice) {
 
-        PriceDTO myPrice = new PriceDTO(1, LocalDateTime.now(), LocalDateTime.now(), 1, 1, 1, 0.0, "ola");
-        /*
-         * LocalDateTime filteredLocalDate =
-         *
-         * List<Price> priceList = this.priceRepo.findPrices(myPrice.getStartDate(),
-         * myPrice.getProductId(),
-         * myPrice.getBrandId());
-         * PriceDTO myPriceDTO = new PriceDTO();
-         */
-        return myPrice;
+        myArrivingPrice = new ArrivingPriceDTO(LocalDateTime.of(2023, 06, 01, 18, 23, 00), 1, 1);
+
+        PriceDTO myPrice = new PriceDTO(1, LocalDateTime.of(2022, 12, 01, 18, 23, 00),
+                LocalDateTime.of(2023, 12, 01, 18, 23, 00), 1, 1, 1, 0.0, "ola");
+
+        if (myArrivingPrice.getPriceDateTime().isAfter(myPrice.getStartDate())
+                || myArrivingPrice.getPriceDateTime().isBefore(myPrice.getEndDate())) {
+            return null;
+        } else {
+            return myPrice;
+        }
     }
 
     // myPrice ->
