@@ -26,9 +26,9 @@ public class PriceService {
 
         if (myArrivingPrice.getPriceDateTime().isAfter(myPrice.getStartDate())
                 || myArrivingPrice.getPriceDateTime().isBefore(myPrice.getEndDate())) {
-            return null;
-        } else {
             return myPrice;
+        } else {
+            return null;
         }
     }
 
