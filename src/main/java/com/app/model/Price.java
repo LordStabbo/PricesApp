@@ -4,8 +4,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Entity
@@ -13,12 +14,13 @@ import java.util.Date;
 @Table(name = "Price")
 public class Price {
 
+    @Id
     @Column(name = "BRAND_ID")
     private int brandId;
     @Column(name = "START_DATE")
-    private Date startDate;
+    private LocalDateTime startDate;
     @Column(name = "END_DATE")
-    private Date endDate;
+    private LocalDateTime endDate;
     @Column(name = "PRICE_LIST")
     private int priceList;
     @Column(name = "PRODUCT_ID")
@@ -29,6 +31,5 @@ public class Price {
     private double price;
     @Column(name = "CURR")
     private String currency;
-
 
 }

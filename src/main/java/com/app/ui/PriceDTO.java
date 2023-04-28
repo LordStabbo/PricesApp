@@ -1,10 +1,9 @@
 package com.app.ui;
 
-
-
 import java.util.Date;
+import lombok.Data;
 
-
+@Data
 public class PriceDTO {
 
     private int brandId;
@@ -16,8 +15,4 @@ public class PriceDTO {
     private double price;
     private String currency;
 
-
 }
-
-
-

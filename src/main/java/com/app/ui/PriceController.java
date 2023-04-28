@@ -13,28 +13,26 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/allprices/price")
+@RequestMapping("/prices")
 public class PriceController {
     @Autowired
     private PriceRepository priceRepository;
 
-    @GetMapping
-    public List<Price> findAllPrices(){
+    @GetMapping("/")
+    public List<Price> findAllPrices(List myList) {
         return priceRepository.findAll();
     }
 
     @GetMapping("/{price}")
-    public ResponseEntity<Price>
-        findPriceByProductId(@PathVariable(value = "BRAND_ID") int brandId){
+    public ResponseEntity<Price> findPriceByProductId(@PathVariable(value = "BRAND_ID") int brandId) {
 
         Optional<Price> price = priceRepository.findById(brandId);
 
-        if(price.isPresent()){
+        if (price.isPresent()) {
             return ResponseEntity.ok().body(price.get());
-        }else{
+        } else {
             return ResponseEntity.notFound().build();
         }
-
     }
 
 }
