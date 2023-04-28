@@ -1,17 +1,18 @@
 package com.app.ui;
 
-import java.util.Date;
-
-import lombok.Builder;
+import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class PriceDTO {
 
     private int brandId;
-    private Date startDate;
-    private Date endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private int priceList;
     private int productId;
     private int priority;

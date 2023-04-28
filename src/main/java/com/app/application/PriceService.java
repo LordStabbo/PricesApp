@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -20,9 +21,9 @@ public class PriceService {
         this.priceRepo = priceRepo;
     }
 
-    public PriceDTO gimmePrices(PriceRepository priceRepo) {
+    public PriceDTO gimmePrices() {
 
-        PriceDTO myPrice = new PriceDTO();
+        PriceDTO myPrice = new PriceDTO(1, LocalDateTime.now(), LocalDateTime.now(), 1, 1, 1, 0.0, "ola");
         /*
          * LocalDateTime filteredLocalDate =
          *
