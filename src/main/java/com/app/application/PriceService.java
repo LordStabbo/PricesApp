@@ -21,17 +21,17 @@ public class PriceService {
     }
 
     public PriceDTO gimmePrices(PriceRepository priceRepo) {
+
+        PriceDTO myPrice = new PriceDTO();
         /*
-         * Price myPrice = new Price();
-         * 
-         * // LocalDateTime filteredLocalDate =
-         * 
+         * LocalDateTime filteredLocalDate =
+         *
          * List<Price> priceList = this.priceRepo.findPrices(myPrice.getStartDate(),
          * myPrice.getProductId(),
          * myPrice.getBrandId());
          * PriceDTO myPriceDTO = new PriceDTO();
          */
-        return null;
+        return myPrice;
     }
 
     // myPrice ->
