@@ -2,6 +2,7 @@ package com.app.application;
 
 import com.app.infrastructure.PriceRepository;
 import com.app.ui.ArrivingPriceDTO;
+import com.app.ui.ExitingPriceDTO;
 import com.app.ui.PriceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,16 +18,20 @@ public class PriceService {
         this.priceRepo = priceRepo;
     }
 
-    public PriceDTO gimmePrices(ArrivingPriceDTO myArrivingPrice) {
+    public ExitingPriceDTO gimmePrices(ArrivingPriceDTO myArrivingPrice) {
 
         myArrivingPrice = new ArrivingPriceDTO(LocalDateTime.of(2023, 06, 01, 18, 23, 00), 1, 1);
 
         PriceDTO myPrice = new PriceDTO(1, LocalDateTime.of(2022, 12, 01, 18, 23, 00),
                 LocalDateTime.of(2023, 12, 01, 18, 23, 00), 1, 1, 1, 0.0, "ola");
 
+        ExitingPriceDTO myExitPrice = new ExitingPriceDTO(myPrice.getBrandId(), myPrice.getStartDate(),
+                myPrice.getEndDate(),
+                myPrice.getPriceList(), myPrice.getProductId(), myPrice.getPrice(), myPrice.getCurrency());
+
         if (myArrivingPrice.getPriceDateTime().isAfter(myPrice.getStartDate())
                 || myArrivingPrice.getPriceDateTime().isBefore(myPrice.getEndDate())) {
-            return myPrice;
+            return myExitPrice;
         } else {
             return null;
         }
