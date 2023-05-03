@@ -7,6 +7,8 @@ import com.app.ui.PriceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class PriceService {
@@ -18,7 +20,7 @@ public class PriceService {
         this.priceRepo = priceRepo;
     }
 
-    public ExitingPriceDTO gimmePrices(ArrivingPriceDTO myArrivingPrice) {
+    public List<ExitingPriceDTO> gimmePrice(ArrivingPriceDTO myArrivingPrice) {
 
         PriceDTO myPrice = new PriceDTO(1, LocalDateTime.of(2022, 12, 01, 18, 23, 00),
                 LocalDateTime.of(2023, 12, 01, 18, 23, 00), 1, 1, 1, 0.0, "ola");
@@ -27,15 +29,14 @@ public class PriceService {
                 myPrice.getEndDate(),
                 myPrice.getPriceList(), myPrice.getProductId(), myPrice.getPrice(), myPrice.getCurrency());
 
+        List<ExitingPriceDTO> myExitList = new ArrayList<>();
+
         if (myArrivingPrice.getPriceDateTime().isAfter(myPrice.getStartDate())
                 && myArrivingPrice.getPriceDateTime().isBefore(myPrice.getEndDate())) {
-            return myExitPrice;
-        } else {
-            return new ExitingPriceDTO(0, null, null, 0, 0, 0.0, null);
+            myExitList.add(myExitPrice);
         }
-    }
 
-    // myPrice ->
-    // myPrice.getData().isAfter(LocalDateTime.of(myPrice.getStartDate)).isBefore(myPrice.getEndDate)
+        return myExitList;
+    }
 
 }
