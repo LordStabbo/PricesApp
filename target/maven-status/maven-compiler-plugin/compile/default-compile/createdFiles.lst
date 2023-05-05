@@ -1,0 +1,8 @@
+com\app\PricesApplication.class
+com\app\infrastructure\outputport\PriceRepository.class
+com\app\domain\Price.class
+com\app\infrastructure\ui\ArrivingPriceDTO.class
+com\app\application\PriceUseCases.class
+com\app\infrastructure\ui\ExitingPriceDTO.class
+com\app\infrastructure\inputAdapter\PriceController.class
+com\app\infrastructure\ui\PriceDTO.class
