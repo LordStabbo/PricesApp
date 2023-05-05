@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="explicit-with-entity" />
+        <module name="hexagonal-architecture" />
       </profile>
     </annotationProcessing>
   </component>
