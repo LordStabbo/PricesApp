@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   postgres:
-    container_name: postgres
+    container_name: myPostgres
     image: postgres:11
     environment:
       POSTGRES_USER: postgres
@@ -12,3 +12,17 @@ services:
     ports:
       - "5432:5432"
     restart: unless-stopped
+  app:
+    image: LordStabboPriceApp:1.0
+    build:
+      context: .
+    container_name: LordStabboZaraPrices
+    depends_on:
+      - myPostgres
+    enviroment:
+      -SPRING_DATASOURCE_URL= jdbc::postgresql://postgres:5432/myPostgres
+      -SPRING_DATASOURCE_USERNAME=postgres
+      -SPRING_DATASOURCE_PASSWORD=postgres
+      -SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      -9393:9393

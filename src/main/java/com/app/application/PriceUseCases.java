@@ -1,37 +1,54 @@
 package com.app.application;
 
-import com.app.domain.Price;
 import com.app.infrastructure.outputport.PriceRepository;
 import com.app.infrastructure.ui.ArrivingPriceDTO;
 import com.app.infrastructure.ui.ExitingPriceDTO;
 import com.app.infrastructure.ui.PriceDTO;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PriceUseCases {
 
-    @Autowired
     PriceRepository priceRepo;
+    ModelMapper myModelMapper;
 
-    public PriceUseCases(PriceRepository priceRepo) {
+    public PriceUseCases(PriceRepository priceRepo, ModelMapper myModelMapper) {
         this.priceRepo = priceRepo;
+        this.myModelMapper = myModelMapper;
 
     }
 
-    public ExitingPriceDTO showPrice(ArrivingPriceDTO myArrivingPrice) {
+    public List<ExitingPriceDTO> showPrice(ArrivingPriceDTO myArrivingPrice) {
 
-        /*
-         * priceRepo.findPrices(myArrivingPrice.getPriceDateTime(),
-         * myArrivingPrice.getProductId(),
-         * myArrivingPrice.getBrandId());
-         */
+        List<PriceDTO> myPriceList = getAllPrices();
 
+        List<PriceDTO> myFilteredList = myPriceList.stream()
+                .filter(myPrice -> myPrice.getStartDate().isBefore(myArrivingPrice.getPriceDateTime()) &&
+                        myPrice.getEndDate().isAfter(myArrivingPrice.getPriceDateTime()))
+                .collect(Collectors.toList());
+
+        List<ExitingPriceDTO> myExitList = new ArrayList<>();
+        for (PriceDTO myPrice : myFilteredList) {
+            ExitingPriceDTO myExitPrice = new ExitingPriceDTO(myPrice.getBrandId(), myPrice.getStartDate(),
+                    myPrice.getEndDate(),
+                    myPrice.getPriceList(), myPrice.getProductId(), myPrice.getPrice(), myPrice.getCurrency());
+
+            myExitList.add(myExitPrice);
+        }
+
+        return myExitList;
+
+    }
+
+    public List<PriceDTO> getAllPrices() {
         PriceDTO myPrice1 = new PriceDTO(1, LocalDateTime.of(2020, 06, 14, 00, 00, 00),
                 LocalDateTime.of(2020, 12, 31, 23, 59, 59), 1, 35455, 0, 35.5, "EUR");
 
@@ -50,24 +67,7 @@ public class PriceUseCases {
         myPriceList.add(myPrice3);
         myPriceList.add(myPrice4);
 
-        for (PriceDTO myPrice : myPriceList) {
-            ExitingPriceDTO myExitPrice = new ExitingPriceDTO(myPrice.getBrandId(), myPrice.getStartDate(),
-                    myPrice.getEndDate(),
-                    myPrice.getPriceList(), myPrice.getProductId(), myPrice.getPrice(), myPrice.getCurrency());
-
-            if (myArrivingPrice.getPriceDateTime().isAfter(myPrice.getStartDate())
-                    && myArrivingPrice.getPriceDateTime().isBefore(myPrice.getEndDate())) {
-                return myExitPrice;
-            }
-
-        }
-        return null;
-
-    }
-
-    public List<Price> getAllPrices() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllPrices'");
+        return myPriceList;
     }
 
 }

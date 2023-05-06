@@ -3,6 +3,7 @@ g:\Mi unidad\VisualStudio-Workspace\Arquitectura\CarlosTebar_pricesApp\prices_ap
 g:\Mi unidad\VisualStudio-Workspace\Arquitectura\CarlosTebar_pricesApp\prices_app\src\main\java\com\app\application\PriceUseCases.java
 g:\Mi unidad\VisualStudio-Workspace\Arquitectura\CarlosTebar_pricesApp\prices_app\src\main\java\com\app\infrastructure\outputport\PriceRepository.java
 g:\Mi unidad\VisualStudio-Workspace\Arquitectura\CarlosTebar_pricesApp\prices_app\src\main\java\com\app\infrastructure\ui\ArrivingPriceDTO.java
+g:\Mi unidad\VisualStudio-Workspace\Arquitectura\CarlosTebar_pricesApp\prices_app\src\main\java\com\app\infrastructure\ui\PriceBean.java
 g:\Mi unidad\VisualStudio-Workspace\Arquitectura\CarlosTebar_pricesApp\prices_app\src\main\java\com\app\infrastructure\inputAdapter\PriceController.java
 g:\Mi unidad\VisualStudio-Workspace\Arquitectura\CarlosTebar_pricesApp\prices_app\src\main\java\com\app\infrastructure\ui\ExitingPriceDTO.java
 g:\Mi unidad\VisualStudio-Workspace\Arquitectura\CarlosTebar_pricesApp\prices_app\src\main\java\com\app\domain\Price.java

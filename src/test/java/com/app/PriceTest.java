@@ -6,6 +6,7 @@ import com.app.infrastructure.ui.ArrivingPriceDTO;
 import com.app.infrastructure.ui.ExitingPriceDTO;
 import com.app.infrastructure.ui.PriceDTO;
 import org.junit.Test;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
@@ -18,6 +19,7 @@ public class PriceTest {
 
     @Autowired
     PriceRepository myRepo;
+    ModelMapper myModelMapper;
 
     public List<PriceDTO> gimmePriceList() {
         List<PriceDTO> myPriceList = new ArrayList<PriceDTO>();
@@ -48,7 +50,7 @@ public class PriceTest {
 
     @Test
     public void shouldReturnPriceIfItsWithinRange() {
-        PriceUseCases myService = new PriceUseCases(myRepo);
+        PriceUseCases myService = new PriceUseCases(myRepo, myModelMapper);
 
         ArrivingPriceDTO myArrivingPrice = new ArrivingPriceDTO(LocalDateTime.of(2020, 8, 01, 18, 23, 00), 1, 1);
 
@@ -67,7 +69,7 @@ public class PriceTest {
             }
         }
 
-        assertEquals(myExitList.get(myExitList.size() - 2), myService.showPrice(myArrivingPrice));
+        assertEquals(myExitList, myService.showPrice(myArrivingPrice));
 
     }
 
