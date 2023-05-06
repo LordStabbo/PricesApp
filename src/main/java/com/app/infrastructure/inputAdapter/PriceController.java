@@ -22,7 +22,7 @@ public class PriceController {
 
     @GetMapping("/check")
     public List<PriceDTO> findAllPrices(List<Price> myList) {
-        return myService.getAllPrices();
+        return null;
     }
 
 }

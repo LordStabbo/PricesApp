@@ -1,7 +1,7 @@
 package com.app;
 
 import com.app.application.PriceUseCases;
-import com.app.infrastructure.outputport.PriceRepository;
+import com.app.infrastructure.persistance.PriceRepository;
 import com.app.infrastructure.ui.ArrivingPriceDTO;
 import com.app.infrastructure.ui.ExitingPriceDTO;
 import com.app.infrastructure.ui.PriceDTO;
@@ -48,11 +48,14 @@ public class PriceTest {
         return myPriceList;
     }
 
+    List<PriceDTO> myPriceList = gimmePriceList();
+
     @Test
     public void shouldReturnPriceIfItsWithinRange() {
         PriceUseCases myService = new PriceUseCases(myRepo, myModelMapper);
 
-        ArrivingPriceDTO myArrivingPrice = new ArrivingPriceDTO(LocalDateTime.of(2020, 8, 01, 18, 23, 00), 1, 1);
+        ArrivingPriceDTO myArrivingPrice = new ArrivingPriceDTO(LocalDateTime.of(2020, 8, 01, 18, 23, 00), 1,
+                1);
 
         List<ExitingPriceDTO> myExitList = new ArrayList<>();
         List<PriceDTO> defaultPriceList = gimmePriceList();
@@ -69,7 +72,7 @@ public class PriceTest {
             }
         }
 
-        assertEquals(myExitList, myService.showPrice(myArrivingPrice));
+        assertEquals(myExitList.get(myExitList.size() - 2), myService.showPrices(myPriceList, myArrivingPrice));
 
     }
 
