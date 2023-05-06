@@ -15,6 +15,8 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
+import static org.mockito.Mockito.*;
+
 public class PriceTest {
 
     @Autowired
@@ -22,28 +24,48 @@ public class PriceTest {
     ModelMapper myModelMapper;
 
     public List<PriceDTO> gimmePriceList() {
+        PriceDTO price1 = mock(PriceDTO.class);
+        when(price1.getStartDate()).thenReturn(LocalDateTime.of(2020, 6, 14, 0, 0, 0));
+        when(price1.getEndDate()).thenReturn(LocalDateTime.of(2020, 12, 31, 23, 59, 59));
+        when(price1.getPriceList()).thenReturn(1);
+        when(price1.getProductId()).thenReturn(35455);
+        when(price1.getPriority()).thenReturn(0);
+        when(price1.getPrice()).thenReturn(35.5);
+        when(price1.getCurrency()).thenReturn("EUR");
+
+        PriceDTO price2 = mock(PriceDTO.class);
+        when(price2.getStartDate()).thenReturn(LocalDateTime.of(2020, 6, 14, 15, 0, 0));
+        when(price2.getEndDate()).thenReturn(LocalDateTime.of(2020, 6, 14, 8, 30, 0));
+        when(price2.getPriceList()).thenReturn(2);
+        when(price2.getProductId()).thenReturn(35455);
+        when(price2.getPriority()).thenReturn(1);
+        when(price2.getPrice()).thenReturn(25.45);
+        when(price2.getCurrency()).thenReturn("EUR");
+
+        PriceDTO price3 = mock(PriceDTO.class);
+        when(price3.getStartDate()).thenReturn(LocalDateTime.of(2020, 6, 15, 0, 0, 0));
+        when(price3.getEndDate()).thenReturn(LocalDateTime.of(2020, 6, 15, 11, 0, 0));
+        when(price3.getPriceList()).thenReturn(3);
+        when(price3.getProductId()).thenReturn(35455);
+        when(price3.getPriority()).thenReturn(1);
+        when(price3.getPrice()).thenReturn(30.5);
+        when(price3.getCurrency()).thenReturn("EUR");
+
+        PriceDTO price4 = mock(PriceDTO.class);
+        when(price4.getStartDate()).thenReturn(LocalDateTime.of(2020, 6, 15, 16, 0, 0));
+        when(price4.getEndDate()).thenReturn(LocalDateTime.of(2020, 12, 30, 23, 59, 59));
+        when(price4.getPriceList()).thenReturn(4);
+        when(price4.getProductId()).thenReturn(35455);
+        when(price4.getPriority()).thenReturn(1);
+        when(price4.getPrice()).thenReturn(38.95);
+        when(price4.getCurrency()).thenReturn("EUR");
+
+        // Create list of mock PriceDTO objects
         List<PriceDTO> myPriceList = new ArrayList<PriceDTO>();
-
-        PriceDTO myPrice1 = new PriceDTO(1, LocalDateTime.of(2020, 06, 14, 00, 00,
-                00),
-                LocalDateTime.of(2020, 12, 31, 23, 59, 59), 1, 35455, 0, 35.5, "EUR");
-
-        PriceDTO myPrice2 = new PriceDTO(1, LocalDateTime.of(2020, 06, 14, 15, 00,
-                00),
-                LocalDateTime.of(2020, 06, 14, 8, 30, 00), 2, 35455, 1, 25.45, "EUR");
-
-        PriceDTO myPrice3 = new PriceDTO(1, LocalDateTime.of(2020, 06, 15, 00, 00,
-                00),
-                LocalDateTime.of(2020, 06, 15, 11, 00, 00), 3, 35455, 1, 30.5, "EUR");
-
-        PriceDTO myPrice4 = new PriceDTO(1, LocalDateTime.of(2020, 06, 15, 16, 00,
-                00),
-                LocalDateTime.of(2020, 12, 30, 23, 59, 59), 4, 35455, 1, 38.95, "EUR");
-
-        myPriceList.add(myPrice1);
-        myPriceList.add(myPrice2);
-        myPriceList.add(myPrice3);
-        myPriceList.add(myPrice4);
+        myPriceList.add(price1);
+        myPriceList.add(price2);
+        myPriceList.add(price3);
+        myPriceList.add(price4);
 
         return myPriceList;
     }
