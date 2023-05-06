@@ -1,9 +1,12 @@
 package com.app.application;
 
+import com.app.domain.Price;
 import com.app.infrastructure.outputport.PriceRepository;
 import com.app.infrastructure.ui.ArrivingPriceDTO;
 import com.app.infrastructure.ui.ExitingPriceDTO;
 import com.app.infrastructure.ui.PriceDTO;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -13,6 +16,7 @@ import java.util.List;
 @Service
 public class PriceUseCases {
 
+    @Autowired
     PriceRepository priceRepo;
 
     public PriceUseCases(PriceRepository priceRepo) {
@@ -22,8 +26,11 @@ public class PriceUseCases {
 
     public ExitingPriceDTO showPrice(ArrivingPriceDTO myArrivingPrice) {
 
-        priceRepo.findPrices(myArrivingPrice.getPriceDateTime(), myArrivingPrice.getProductId(),
-                myArrivingPrice.getBrandId());
+        /*
+         * priceRepo.findPrices(myArrivingPrice.getPriceDateTime(),
+         * myArrivingPrice.getProductId(),
+         * myArrivingPrice.getBrandId());
+         */
 
         PriceDTO myPrice1 = new PriceDTO(1, LocalDateTime.of(2020, 06, 14, 00, 00, 00),
                 LocalDateTime.of(2020, 12, 31, 23, 59, 59), 1, 35455, 0, 35.5, "EUR");
@@ -58,4 +65,12 @@ public class PriceUseCases {
 
     }
 
+    public List<Price> getAllPrices() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAllPrices'");
+    }
+
 }
+
+// myPrice ->
+// myPrice.getData().isAfter(LocalDateTime.of(myPrice.getStartDate)).isBefore(myPrice.getEndDate)
