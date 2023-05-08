@@ -12,4 +12,5 @@ public class PriceBean {
     public ModelMapper myModelMapper() {
         return new ModelMapper();
     }
+
 }

@@ -6,4 +6,5 @@ com\app\application\PriceUseCases.class
 com\app\infrastructure\ui\ExitingPriceDTO.class
 com\app\infrastructure\inputAdapter\PriceController.class
 com\app\infrastructure\persistance\PriceRepository.class
+com\app\infrastructure\persistance\Repositorios.class
 com\app\infrastructure\ui\PriceDTO.class

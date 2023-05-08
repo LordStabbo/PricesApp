@@ -10,7 +10,7 @@ services:
       POSTGRES_DB: defaultdb
       PGDATA: /data/postgres
     ports:
-      - "5432:5432"
+      - "5431:5432"
     restart: unless-stopped
   app:
     image: LordStabboPriceApp:1.0
@@ -20,9 +20,9 @@ services:
     depends_on:
       - myPostgres
     enviroment:
-      -SPRING_DATASOURCE_URL= jdbc::postgresql://postgres:5432/myPostgres
-      -SPRING_DATASOURCE_USERNAME=postgres
-      -SPRING_DATASOURCE_PASSWORD=postgres
-      -SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      SPRING_DATASOURCE_URL= jdbc::postgresql://postgres:5432/postgres
+      SPRING_DATASOURCE_USERNAME=postgres
+      SPRING_DATASOURCE_PASSWORD=postgres
+      SPRING_JPA_HIBERNATE_DDL_AUTO=update
     ports:
-      -9393:9393
+      -"9393:9393"

@@ -1,11 +1,13 @@
 package com.app.application;
 
 import com.app.infrastructure.persistance.PriceRepository;
+import com.app.infrastructure.persistance.Repositorios;
 import com.app.infrastructure.ui.ArrivingPriceDTO;
 import com.app.infrastructure.ui.ExitingPriceDTO;
 import com.app.infrastructure.ui.PriceDTO;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -16,11 +18,9 @@ import java.util.NoSuchElementException;
 public class PriceUseCases {
 
     PriceRepository priceRepo;
-    ModelMapper myModelMapper;
 
-    public PriceUseCases(PriceRepository priceRepo, ModelMapper myModelMapper) {
+    public PriceUseCases(PriceRepository priceRepo) {
         this.priceRepo = priceRepo;
-        this.myModelMapper = myModelMapper;
 
     }
 

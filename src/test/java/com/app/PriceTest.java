@@ -74,7 +74,7 @@ public class PriceTest {
 
     @Test
     public void shouldReturnPriceIfItsWithinRange() {
-        PriceUseCases myService = new PriceUseCases(myRepo, myModelMapper);
+        PriceUseCases myService = new PriceUseCases(myRepo);
 
         ArrivingPriceDTO myArrivingPrice = new ArrivingPriceDTO(LocalDateTime.of(2020, 8, 01, 18, 23, 00), 1,
                 1);
